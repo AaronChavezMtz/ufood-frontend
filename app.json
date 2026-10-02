@@ -1,0 +1,62 @@
+{
+  "expo": {
+    "name": "Unifood",
+    "slug": "unifood",
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.unifood",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Unifood necesita acceso a tus fotos para que puedas agregar imágenes de tus productos.",
+        "NSCameraUsageDescription": "Unifood necesita acceso a tu cámara para que puedas tomar fotos de tus productos.",
+        "LSApplicationQueriesSchemes": [
+          "whatsapp"
+        ]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png"
+      },
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.ACCESS_WIFI_STATE",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.yourcompany.unifood",
+      "usesCleartextTraffic": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "La aplicación necesita acceso a tus fotos para que puedas agregar imágenes de productos.",
+          "cameraPermission": "La aplicación necesita acceso a tu cámara para tomar fotos de productos."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "148ccc0e-8f98-4fc0-acee-37372d23f7a5"
+      }
+    },
+    "owner": "normagc"
+  }
+}
