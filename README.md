@@ -385,7 +385,7 @@ La documentación señala específicamente el uso consistente de colores, botone
 ```bash
 git clone https://github.com/AaronChavezMtz/ufood-frontend.git
 
-cd unifood-frontend
+cd ufood-frontend
 ```
 
 ### Instalar dependencias
