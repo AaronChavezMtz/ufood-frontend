@@ -1,78 +1,77 @@
-# Arquitectura MVVM - UFood
+# Arquitectura MVVM — UFood
 
-## Descripción General
+Documentación técnica del frontend móvil. Para una visión general del proyecto, consulta el [README](./README.md).
 
-Esta aplicación sigue el patrón de arquitectura **MVVM (Model-View-ViewModel)** combinado con patrones de diseño adicionales para asegurar escalabilidad, mantenibilidad y seguridad.
+## Descripción general
 
-## Estructura del Proyecto
+La aplicación sigue el patrón **MVVM (Model-View-ViewModel)** combinado con patrones de diseño adicionales (Singleton, Repository, Interceptor) para favorecer la escalabilidad y el mantenimiento.
 
+```mermaid
+sequenceDiagram
+    participant V as View
+    participant VM as ViewModel
+    participant S as Service
+    participant API as API REST
+    V->>VM: Acción del usuario
+    VM->>S: Llama al servicio
+    S->>API: Petición HTTP (+ JWT)
+    API-->>S: { isSuccess, result }
+    S-->>VM: Modelo (User / Product)
+    VM-->>V: Actualiza estado → re-render
 ```
-UNIFOOD/
+
+## Estructura del proyecto
+
+```text
+UFOOD/
 ├── src/
-│   ├── config/               # Configuración centralizada
-│   │   └── app.config.js
-│   │
-│   ├── models/               # Modelos de datos (Entity)
-│   │   ├── User.model.js
-│   │   └── Product.model.js
-│   │
-│   ├── services/             # Servicios (Business Logic)
-│   │   ├── Storage.service.js
-│   │   ├── Http.service.js
-│   │   ├── Auth.service.js
-│   │   └── Product.service.js
-│   │
-│   ├── viewmodels/           # ViewModels (Presentation Logic)
-│   │   ├── Auth.viewmodel.js
-│   │   └── Product.viewmodel.js
-│   │
-│   ├── views/                # Views (UI Components)
-│   │   ├── auth/
-│   │   │   ├── LoginScreen.js
-│   │   │   └── RegisterScreen.js
-│   │   ├── home/
-│   │   │   ├── HomeScreen.js
-│   │   │   └── AdminHomeScreen.js
-│   │   └── products/
-│   │       ├── ProductsListScreen.js
-│   │       └── ProductFormScreen.js
-│   │
-│   ├── navigation/           # Navegación
-│   │   └── AppNavigator.js
-│   │
-│   ├── utils/                # Utilidades
-│   │   ├── Validation.utils.js
-│   │   └── Format.utils.js
-│   │
-│   └── constants/            # Constantes
-│       └── Colors.js
-│
+│   ├── config/           # Configuración centralizada (app.config.js)
+│   ├── models/           # User.model.js, Product.model.js
+│   ├── services/         # Http, Auth, Product, Storage, Datadog
+│   ├── viewmodels/       # Auth.viewmodel.js, Product.viewmodel.js, ...
+│   ├── views/            # Pantallas
+│   │   ├── LoginScreen.js
+│   │   ├── RegisterScreen.js
+│   │   ├── HomeScreen.js
+│   │   ├── ProductsListScreen.js
+│   │   ├── ProductFormScreen.js
+│   │   ├── ProfileScreen.js
+│   │   ├── AdminHomeScreen.js
+│   │   ├── AdminUsersScreen.js
+│   │   ├── AdminProductsScreen.js
+│   │   └── AdminProductDetailScreen.js
+│   ├── navigation/       # AppNavigator.js, NavigationTracker.js
+│   ├── utils/            # Validaciones y formato
+│   └── constants/        # Colores
+├── assets/
+├── docs/images/          # Capturas del README
 ├── App.js
 └── package.json
 ```
 
-## Patrones de Diseño Implementados
+## Capas
 
-### 1. MVVM (Model-View-ViewModel)
+| Capa | Responsabilidad | Ejemplos |
+|---|---|---|
+| **Model** | Representa los datos, los transforma y los valida | `User.model.js`, `Product.model.js` |
+| **View** | Renderiza la interfaz y delega las acciones | Pantallas de `views/` |
+| **ViewModel** | Estado y lógica de presentación mediante hooks | `Auth.viewmodel.js`, `Product.viewmodel.js` |
+| **Service** | Acceso a la API y al almacenamiento local | `Http`, `Auth`, `Product`, `Storage` |
 
-**Propósito:** Separar la lógica de presentación de la lógica de negocio
+## Patrones de diseño
 
-**Implementación:**
-- **Model:** Clases que representan datos y lógica de validación (`User.model.js`, `Product.model.js`)
-- **View:** Componentes React Native que renderizan la UI
-- **ViewModel:** Hooks personalizados que manejan el estado y la lógica de presentación
+### 1. MVVM
 
-**Beneficios:**
-- Separación clara de responsabilidades
-- Facilita pruebas unitarias
-- Reutilización de lógica
-- Mantenibilidad mejorada
+**Propósito:** separar la lógica de presentación de la de datos.
+
+- **Model:** clases con los datos y su validación.
+- **View:** componentes React Native que solo renderizan.
+- **ViewModel:** hooks personalizados que manejan el estado de cada pantalla.
 
 ### 2. Singleton
 
-**Propósito:** Asegurar una única instancia de servicios críticos
+**Propósito:** garantizar una única instancia de los servicios.
 
-**Implementación:**
 ```javascript
 class HttpService {
   constructor() {
@@ -84,302 +83,158 @@ class HttpService {
 }
 ```
 
-**Aplicado en:**
-- `Storage.service.js`
-- `Http.service.js`
-- `Auth.service.js`
-- `Product.service.js`
+Aplicado en `Storage.service.js`, `Http.service.js`, `Auth.service.js` y `Product.service.js`.
 
-**Beneficios:**
-- Control de acceso global
-- Estado compartido consistente
-- Eficiencia en uso de recursos
+### 3. Repository
 
-### 3. Repository Pattern
+Los servicios actúan como repositorios: encapsulan el acceso a la API y transforman las respuestas en modelos. Cambiar la fuente de datos solo requiere modificar esta capa.
 
-**Propósito:** Abstraer el acceso a datos
+### 4. Interceptor
 
-**Implementación:**
-- Los servicios actúan como repositorios
-- Encapsulan lógica de acceso a APIs
-- Transforman respuestas en modelos
+**Propósito:** modificar peticiones y respuestas de forma centralizada.
 
-**Beneficios:**
-- Cambio de fuente de datos sin afectar lógica
-- Testing más sencillo con mocks
-- Centralización de lógica de datos
-
-### 4. Interceptor Pattern
-
-**Propósito:** Modificar requests/responses de manera centralizada
-
-**Implementación:**
 ```javascript
 httpService.addRequestInterceptor(async (config) => {
-  const token = await storageService.getItem(STORAGE_KEYS.USER_TOKEN);
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  const isAuthRoute = config.url.includes('/login') || config.url.includes('/register');
+
+  if (!isAuthRoute) {
+    const token = await storageService.getItem(CONFIG.STORAGE_KEYS.USER_TOKEN);
+    if (token) {
+      config.headers = { ...config.headers, Authorization: `Bearer ${token}` };
+    }
   }
   return config;
 });
 ```
 
-**Aplicado en:**
-- `Http.service.js` para autenticación automática
-- Actualización de actividad de sesión
-- Logging de requests
+- **Request:** agrega el token JWT, excepto en las rutas de login y registro.
+- **Response:** actualiza la marca de última actividad de la sesión tras cada respuesta exitosa.
 
-**Beneficios:**
-- Lógica centralizada de autenticación
-- Manejo consistente de errores
-- Extensibilidad
+### 5. Observer (mediante hooks)
 
-### 5. Observer Pattern (via Hooks)
+Los ViewModels exponen estado con `useState` y `useCallback`. Cuando cambia, las Views se vuelven a renderizar automáticamente.
 
-**Propósito:** Notificar cambios de estado a la UI
+### 6. Factory (implícito)
 
-**Implementación:**
-- React Hooks (`useState`, `useCallback`)
-- Los ViewModels exponen estado observable
-- Las Views se re-renderizan automáticamente
+Los modelos se crean con métodos estáticos que encapsulan la transformación:
 
-**Beneficios:**
-- Reactividad automática
-- Código declarativo
-- Sincronización de UI
-
-### 6. Factory Pattern (implícito)
-
-**Propósito:** Crear instancias de modelos
-
-**Implementación:**
 ```javascript
 static fromStorage(jsonString) {
   try {
-    const data = JSON.parse(jsonString);
-    return new User(data);
+    return new User(JSON.parse(jsonString));
   } catch (error) {
     return null;
   }
 }
 ```
 
-**Beneficios:**
-- Validación en construcción
-- Transformación consistente
-- Encapsulación de lógica
+### 7. Strategy (validación)
 
-### 7. Strategy Pattern (validación)
+Cada modelo expone `validate(data)`, que aplica reglas por campo y devuelve `{ isValid, errors }`. Las reglas (patrones, longitudes) viven en `CONFIG.VALIDATION`.
 
-**Propósito:** Validación flexible y extensible
+## Flujo de ejemplo: inicio de sesión
 
-**Implementación:**
-```javascript
-static validate(data) {
-  const errors = {};
-  // Diferentes estrategias de validación
-  // según tipo de dato
-  return { isValid, errors };
-}
-```
-
-**Beneficios:**
-- Validación reutilizable
-- Fácil agregar nuevas reglas
-- Testeable
-
-## Flujo de Datos
-
-```
-┌──────────┐
-│   View   │ (User Interaction)
-└────┬─────┘
-     │
-     ▼
-┌──────────────┐
-│  ViewModel   │ (Presentation Logic)
-└────┬─────────┘
-     │
-     ▼
-┌──────────────┐
-│   Service    │ (Business Logic)
-└────┬─────────┘
-     │
-     ▼
-┌──────────────┐
-│     API      │ (External Data)
-└────┬─────────┘
-     │
-     ▼
-┌──────────────┐
-│    Model     │ (Data Transformation)
-└────┬─────────┘
-     │
-     ▼
-┌──────────────┐
-│  ViewModel   │ (State Update)
-└────┬─────────┘
-     │
-     ▼
-┌──────────────┐
-│    View      │ (UI Update)
-└──────────────┘
-```
-
-## Ejemplo de Uso
-
-### Login Flow
+> Los fragmentos de View y ViewModel son ilustrativos y están simplificados.
 
 ```javascript
-// 1. View dispara acción
+// 1. View dispara la acción
 const handleLogin = async () => {
   const result = await authViewModel.login(email, password);
-  
   if (result.success) {
-    navigation.navigate('Home');
+    navigation.navigate(result.user.isAdmin ? 'AdminHome' : 'Home');
   } else {
     Alert.alert('Error', result.error);
   }
 };
 
-// 2. ViewModel procesa
-const login = async (email, password) => {
-  setIsLoading(true);
-  const result = await authService.login(email, password);
-  setUser(result.user);
-  return result;
-};
+// 2. Service ejecuta la lógica
+async login(email, password) {
+  await this._checkLoginLockout();
 
-// 3. Service ejecuta lógica
-const login = async (email, password) => {
-  const response = await httpService.post('/login', { email, password });
-  const user = new User(response.user);
-  await saveSession(response.token, user);
-  return { success: true, user };
-};
+  const response = await httpService.post(
+    `${CONFIG.API.AUTH_BASE_URL}/login`,
+    { email, password }
+  );
+  if (!response.isSuccess || !response.result) {
+    throw new Error(response.message || 'Credenciales incorrectas');
+  }
 
-// 4. Model valida y transforma
+  const { user: userData, token } = response.result;
+  const user = new User(userData);
+  await this._saveSession(token, user);
+  return { success: true, user, token };
+}
+
+// 3. Model transforma los datos
 class User {
   constructor(data) {
-    this.id = data.id;
-    this.name = data.name;
-    // ...
+    this.id = data.id || data.userId || null;
+    this.roles = Array.isArray(data.roles) ? data.roles : [];
+  }
+  get isAdmin() {
+    return this.roles.includes(CONFIG.ROLES.ADMIN);
   }
 }
 ```
 
-## Seguridad Implementada
+## Control de acceso por rol
 
-### 1. Almacenamiento Encriptado
-- Datos sensibles encriptados en AsyncStorage
-- Keys con prefijo de app (`@unifood:`)
+`User.isAdmin` indica si el arreglo `roles` incluye `ADMIN`. Al iniciar la app, `AppNavigator` verifica la sesión y redirige a `AdminHome` o `Home` según ese valor.
 
-### 2. Sesiones Seguras
-- Timeout automático (1 hora)
-- Verificación constante de actividad
-- Logout automático al expirar
+Este control en el cliente define qué interfaz se muestra. La autorización real de cada operación corresponde al backend.
 
-### 3. Manejo de Intentos Fallidos
-- Máximo 5 intentos de login
-- Bloqueo temporal de 5 minutos
+## Seguridad en el cliente
 
-### 4. Validación de Datos
-- Validación en cliente y servidor
-- Sanitización de inputs
-- Prevención de inyecciones
+| Medida | Detalle |
+|---|---|
+| **Almacenamiento local** | Los datos de sesión se codifican en base64 antes de guardarse en AsyncStorage. Es ofuscación, no cifrado. Las claves usan el prefijo `@ufood_`. |
+| **Expiración de sesión** | 1 hora de inactividad. Se verifica cada 60 segundos y al abrir la app; al vencer se cierra la sesión. |
+| **Intentos fallidos** | Tras 5 intentos fallidos de login se bloquea el acceso durante 15 minutos. Es un control del cliente, complementario al del servidor. |
+| **Validación** | Los modelos validan en el cliente; el servidor también valida y la app muestra sus mensajes de error. |
+| **Autenticación** | Token JWT enviado como `Bearer` mediante interceptor. |
 
-### 5. Tokens de Autenticación
-- Bearer tokens en headers
-- Interceptores automáticos
-- Refresh token (preparado para implementar)
+## Monitoreo
 
-## Testing
+`Datadog.service.js` registra eventos de uso, errores y rendimiento. `NavigationTracker` envuelve el navegador para capturar las vistas de pantalla y su duración. El detalle de los eventos está en el [README](./README.md#monitoreo-con-datadog).
 
-### Pruebas Unitarias (Recomendadas)
+## Pruebas
+
+La arquitectura permite probar cada capa de forma independiente, pero **el proyecto aún no incluye pruebas automatizadas**. Ejemplo de lo planteado:
 
 ```javascript
-// Models
 test('User.validate() rechaza email inválido', () => {
   const result = User.validate({ email: 'invalid' });
   expect(result.isValid).toBe(false);
 });
-
-// Services
-test('AuthService.login() retorna usuario válido', async () => {
-  const result = await authService.login('test@test.com', 'password');
-  expect(result.user).toBeDefined();
-});
-
-// ViewModels
-test('useAuthViewModel login actualiza estado', async () => {
-  const { login, user } = useAuthViewModel();
-  await login('test@test.com', 'password');
-  expect(user).toBeDefined();
-});
 ```
 
-## Mejores Prácticas
+## Buenas prácticas aplicadas
 
-### 1. Nomenclatura
-- **Models:** `Entity.model.js`
-- **Services:** `Service.service.js`
-- **ViewModels:** `Feature.viewmodel.js`
-- **Views:** `FeatureScreen.js`
-
-### 2. Estructura de Archivos
-- Un archivo por clase/componente
-- Exports con nombre para utilidades
-- Default export para componentes principales
-
-### 3. Manejo de Errores
-```javascript
-try {
-  // Lógica
-} catch (error) {
-  console.error('Context:', error);
-  throw new Error('User-friendly message');
-}
-```
-
-### 4. Estado Inmutable
-```javascript
-// ✅ Correcto
-setProducts(prev => [...prev, newProduct]);
-
-// ❌ Incorrecto
-products.push(newProduct);
-setProducts(products);
-```
-
-### 5. Separación de Responsabilidades
-- Views: Solo renderizado
-- ViewModels: Lógica de presentación
-- Services: Lógica de negocio
-- Models: Validación y transformación
+- **Nomenclatura:** `Entity.model.js`, `Service.service.js`, `Feature.viewmodel.js`, `FeatureScreen.js`.
+- **Estado inmutable:** `setProducts(prev => [...prev, newProduct])`; nunca mutar el arreglo directamente.
+- **Separación de responsabilidades:** las Views solo renderizan, los ViewModels manejan la presentación, los Services la comunicación con datos y los Models la validación.
+- **Errores:** los servicios capturan el error técnico y lanzan un mensaje claro para el usuario.
 
 ## Escalabilidad
 
-Esta arquitectura facilita:
+1. **Nueva funcionalidad:** crear Model + Service + ViewModel + View.
+2. **Cambiar el backend:** modificar solo los Services y la configuración.
+3. **Cambiar la interfaz:** modificar solo las Views.
+4. **Trabajo en equipo:** cada capa tiene responsabilidades claras.
 
-1. **Agregar nuevas features:** Crear Model + Service + ViewModel + View
-2. **Cambiar backend:** Modificar solo Services
-3. **Cambiar UI:** Modificar solo Views
-4. **Agregar tests:** Cada capa es testeable independientemente
-5. **Trabajar en equipo:** Responsabilidades claras
+## Próximos pasos
 
-## Próximos Pasos
-
-1. Implementar tests unitarios
-2. Agregar manejo de offline
-3. Implementar refresh token
-4. Agregar analytics
-5. Implementar notificaciones push
-6. Agregar modo oscuro
-7. Implementar caché de imágenes
-8. Agregar internacionalización (i18n)
+- [ ] Pruebas unitarias
+- [ ] Refresh token
+- [ ] Almacenar el token con `expo-secure-store` en lugar de AsyncStorage
+- [ ] Manejo offline
+- [ ] Notificaciones push
+- [ ] Modo oscuro
+- [ ] Caché de imágenes
+- [ ] Internacionalización (i18n)
 
 ## Referencias
 
 - [MVVM Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
-- [React Native Best Practices](https://reactnative.dev/docs/performance)
-- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [React Native Performance](https://reactnative.dev/docs/performance)
+- [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)

@@ -1,169 +1,174 @@
-# Política de Privacidad - UFood
+# Política de Privacidad — UFood
 
-**Última actualización:** Noviembre 2025
+**Última actualización:** Octubre 2026 · **Versión:** 1.1
+
+> **Aviso:** UFood fue un proyecto académico y actualmente el servicio no está en operación. Esta política se conserva como referencia del tratamiento de datos durante su funcionamiento.
 
 ## 1. Introducción
 
-UFood ("nosotros", "nuestro" o "la aplicación") respeta la privacidad de nuestros usuarios ("usuario" o "usted"). Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos su información cuando usa nuestra aplicación móvil.
+UFood ("nosotros", "nuestro" o "la aplicación") respeta la privacidad de sus usuarios ("usuario" o "usted"). Esta Política de Privacidad explica cómo recopilamos, usamos, compartimos y protegemos su información cuando usa nuestra aplicación móvil.
 
-## 2. Información que Recopilamos
+## 2. Información que recopilamos
 
-### 2.1 Información Personal
+### 2.1 Información personal
+
 - Nombre completo
 - Dirección de correo electrónico
 - Número de teléfono
-- Datos de productos publicados
+- Datos de los productos que publica (nombre, descripción, precio y categoría)
 
-### 2.2 Información de Uso
-- Datos de navegación en la aplicación
+### 2.2 Información de uso
+
+- Datos de navegación dentro de la aplicación (pantallas visitadas y tiempo de permanencia)
+- Interacciones con la aplicación (búsquedas, votos en productos, contactos por WhatsApp)
+- Identificador de usuario asociado a los eventos de uso
+- Errores y rendimiento de las peticiones a la red
 - Información del dispositivo (modelo, sistema operativo)
 - Dirección IP
 - Fecha y hora de acceso
 
-### 2.3 Información de Imágenes
-- Fotografías de productos que usted sube
-- Metadatos de imágenes
+### 2.3 Información de imágenes
 
-## 3. Cómo Usamos su Información
+- Fotografías de productos que usted sube
+- Metadatos de las imágenes
+
+## 3. Cómo usamos su información
 
 Usamos la información recopilada para:
 
 - Crear y mantener su cuenta
-- Facilitar la compra y venta de productos
+- Facilitar la publicación y consulta de productos entre usuarios
 - Comunicarnos con usted sobre su cuenta
-- Mejorar nuestros servicios
+- Mejorar nuestros servicios y detectar errores
 - Prevenir fraudes y mantener la seguridad
 - Cumplir con obligaciones legales
 
-## 4. Compartir Información
+## 4. Compartir información
 
-### 4.1 Información Pública
-Los siguientes datos son visibles para otros usuarios:
+### 4.1 Información visible para otros usuarios
+
+Los siguientes datos son visibles para otros usuarios de la aplicación:
+
 - Nombre
-- Número de teléfono (para contacto por WhatsApp)
+- Número de teléfono (para el contacto por WhatsApp)
 - Productos publicados
 - Imágenes de productos
 
 ### 4.2 Terceros
+
 Podemos compartir información con:
-- Proveedores de servicios (hosting, analytics)
-- WhatsApp (cuando un usuario inicia contacto)
-- Autoridades legales (cuando sea requerido por ley)
 
-**NO vendemos su información personal a terceros.**
+- **Proveedores de infraestructura**, para el alojamiento de los servicios y la base de datos.
+- **Datadog**, para el monitoreo de uso, errores y rendimiento de la aplicación.
+- **WhatsApp**, cuando un usuario decide iniciar contacto con un vendedor. La conversación ocurre fuera de la aplicación y se rige por las políticas de WhatsApp.
+- **Autoridades**, cuando la ley lo requiera.
 
-## 5. Seguridad de Datos
+**No vendemos su información personal a terceros.**
 
-Implementamos medidas de seguridad para proteger su información:
+## 5. Seguridad de los datos
 
-- Encriptación de datos sensibles
-- Comunicaciones HTTPS
-- Tokens de autenticación seguros
-- Sesiones con timeout automático
-- Protección contra ataques de fuerza bruta
+Aplicamos las siguientes medidas:
 
-Sin embargo, ningún método de transmisión por Internet es 100% seguro.
+- Comunicaciones con el servidor mediante HTTPS
+- Autenticación con tokens de sesión
+- Cierre automático de sesión tras un periodo de inactividad
+- Bloqueo temporal de acceso tras varios intentos fallidos de inicio de sesión
 
-## 6. Retención de Datos
+Sin embargo, ningún método de transmisión o almacenamiento es 100 % seguro, por lo que no podemos garantizar seguridad absoluta.
+
+## 6. Retención de datos
 
 Conservamos su información personal mientras:
+
 - Su cuenta esté activa
-- Sea necesario para proporcionar servicios
-- Sea requerido por ley
+- Sea necesario para proporcionar el servicio
+- Lo requiera la ley
 
-Puede solicitar la eliminación de su cuenta en cualquier momento.
+Al eliminar su cuenta desde la aplicación se eliminan también los productos que haya publicado.
 
-## 7. Sus Derechos
+## 7. Sus derechos
 
 Usted tiene derecho a:
 
 - **Acceder** a su información personal
-- **Rectificar** datos incorrectos
-- **Eliminar** su cuenta y datos
-- **Oponerse** al procesamiento de datos
-- **Portabilidad** de datos
-- **Revocar** consentimientos
+- **Rectificar** datos incorrectos (puede editar su perfil desde la aplicación)
+- **Eliminar** su cuenta y sus datos (disponible desde su perfil)
+- **Oponerse** al tratamiento de sus datos
+- **Solicitar la portabilidad** de sus datos
+- **Revocar** su consentimiento
 
-Para ejercer estos derechos, contáctenos en: soporte@unifood.com
+Para ejercer estos derechos, escríbanos a: **ufoodmabn@gmail.com**
 
-## 8. Datos de Menores
+## 8. Datos de menores
 
-No recopilamos intencionalmente información de menores de 18 años. Si es padre/madre/tutor y sabe que su hijo nos ha proporcionado información personal, contáctenos.
+No recopilamos intencionalmente información de menores de 18 años. Si usted es padre, madre o tutor y sabe que un menor nos proporcionó información personal, contáctenos para eliminarla.
 
-## 9. Cookies y Tecnologías Similares
+## 9. Almacenamiento local y tecnologías similares
 
-La aplicación usa:
-- AsyncStorage para almacenamiento local
-- Tokens de sesión
-- Analytics (si habilitado)
+La aplicación utiliza:
 
-Puede gestionar estas preferencias en la configuración de su dispositivo.
+- **Almacenamiento local del dispositivo** (AsyncStorage) para guardar la sesión y sus preferencias
+- **Tokens de sesión**
+- **Monitoreo de uso y errores** mediante Datadog
 
-## 10. Cambios a esta Política
+Puede borrar los datos locales cerrando sesión o eliminando los datos de la aplicación desde los ajustes de su dispositivo.
 
-Podemos actualizar esta Política de Privacidad ocasionalmente. Le notificaremos sobre cambios significativos mediante:
-- Notificación en la aplicación
-- Correo electrónico
-- Actualización de la fecha de "Última actualización"
+## 10. Cambios a esta política
 
-## 11. Transferencias Internacionales
+Podemos actualizar esta Política de Privacidad. Los cambios significativos se comunicarán mediante la aplicación o por correo electrónico, y se reflejarán en la fecha de "Última actualización".
 
-Sus datos pueden ser transferidos y procesados en servidores ubicados fuera de su país. Tomamos medidas para asegurar que sus datos estén protegidos conforme a esta política.
+## 11. Transferencias internacionales
 
-## 12. Permisos de la Aplicación
+Sus datos pueden ser almacenados y procesados en servidores ubicados fuera de su país. Procuramos que reciban un nivel de protección acorde con esta política.
 
-### Cámara
-**Propósito:** Tomar fotos de productos para publicar  
-**Opcional:** Sí, puede usar la galería en su lugar
+## 12. Permisos de la aplicación
 
-### Almacenamiento
-**Propósito:** Acceder a imágenes de su galería  
-**Opcional:** Sí, puede usar la cámara en su lugar
+| Permiso | Propósito | ¿Opcional? |
+|---|---|---|
+| **Cámara** | Tomar fotografías de productos para publicarlos | Sí, puede usar la galería |
+| **Galería / almacenamiento** | Seleccionar imágenes de productos | Sí, puede usar la cámara |
 
 ## 13. Contacto
 
 Para preguntas sobre esta Política de Privacidad:
 
-**Email:** ufoodmabn@gmail.com
+**Correo:** ufoodmabn@gmail.com
 
-## 14. Base Legal (GDPR)
+## 14. Base legal (usuarios en la Unión Europea)
 
-Si está en la UE, procesamos sus datos bajo las siguientes bases legales:
-- Consentimiento (para marketing)
-- Contrato (para proporcionar servicios)
-- Interés legítimo (para mejorar servicios)
-- Obligación legal (para cumplir con leyes)
+Si usted se encuentra en la Unión Europea, tratamos sus datos con base en:
 
-## 15. Datos Sensibles
+- **Contrato**: para proporcionar el servicio
+- **Interés legítimo**: para mejorar el servicio y mantener su seguridad
+- **Obligación legal**: para cumplir con la ley
+- **Consentimiento**: cuando usted lo otorga, por ejemplo al aceptar esta política
 
-No solicitamos ni procesamos intencionalmente:
+## 15. Datos sensibles
+
+No solicitamos ni tratamos intencionalmente:
+
 - Datos de salud
 - Datos biométricos
-- Datos financieros directos
+- Datos financieros
 - Información religiosa o política
 
-## 16. Violaciones de Seguridad
+## 16. Incidentes de seguridad
 
-En caso de violación de seguridad que afecte sus datos:
-- Le notificaremos dentro de 72 horas
-- Tomaremos medidas correctivas inmediatas
-- Notificaremos a las autoridades relevantes
+Si ocurre una violación de seguridad que afecte sus datos, nos comprometemos a:
+
+- Notificarle tan pronto como sea posible
+- Tomar medidas correctivas
+- Informar a las autoridades cuando corresponda
 
 ## 17. Consentimiento
 
-Al usar UFood, usted consiente:
+Al usar UFood, usted acepta:
+
 - Esta Política de Privacidad
-- La recopilación y uso de información como se describe
-- El procesamiento de sus datos personales
+- La recopilación y el uso de información como se describe en ella
 
 Puede retirar su consentimiento en cualquier momento eliminando su cuenta.
 
 ---
 
-**Última revisión:** Noviembre 2025  
-**Versión:** 1.0
-
-Esta política está sujeta a las leyes de México y cumple con:
-- GDPR (Unión Europea)
-- CCPA (California, USA)
-- Ley Federal de Protección de Datos Personales en Posesión de Particulares (México)
+Esta política fue elaborada tomando como referencia principios de la legislación mexicana de protección de datos personales, el GDPR (Unión Europea) y la CCPA (California, EE. UU.).

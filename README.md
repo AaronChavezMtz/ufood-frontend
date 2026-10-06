@@ -1,545 +1,260 @@
 # UFood — Marketplace móvil de alimentos
 
-<p align="center">
-  <img src="./assets/icon.png" width="120" alt="UFood Logo">
-</p>
+![React Native](https://img.shields.io/badge/React_Native-Expo_SDK_54-61DAFB?logo=react&logoColor=black)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
+![Android](https://img.shields.io/badge/Plataforma-Android-3DDC84?logo=android&logoColor=white)
+![Arquitectura](https://img.shields.io/badge/Arquitectura-MVVM-blueviolet)
+![Datadog](https://img.shields.io/badge/Monitoreo-Datadog-632CA6?logo=datadog&logoColor=white)
+![EAS](https://img.shields.io/badge/Build-EAS-000020?logo=expo&logoColor=white)
+
+Aplicación móvil que conecta a estudiantes universitarios con vendedores de alimentos dentro y cerca del campus. Los estudiantes descubren productos y platillos, los filtran por categoría y contactan al vendedor directamente por WhatsApp. Desarrollada con **React Native + Expo** y una arquitectura **MVVM** preparada para consumir servicios REST.
 
 <p align="center">
-  Aplicación móvil desarrollada con React Native y Expo para conectar estudiantes universitarios con vendedores de alimentos dentro y cerca del entorno universitario.
+  <img src="./assets/icon.png" width="110" alt="UFood Logo">
 </p>
 
----
+**🎨 Prototipo:** [Figma](https://www.figma.com/proto/RSHdXW03TWzHwBnlzr1H6I/Proyecto-Unifood?node-id=203-91&t=YW8KWwt7WpPUUCtV-1&scaling=scale-down&content-scaling=fixed&page-id=92%3A2089) &nbsp;·&nbsp; **🌐 Landing page:** [matrark.github.io/ufood-landing](https://matrark.github.io/ufood-landing/)
 
-## Sobre el proyecto
-
-**UFood** es una aplicación móvil desarrollada como proyecto académico en equipo durante 2025.
-
-El proyecto propone un marketplace orientado al entorno universitario, donde los estudiantes pueden descubrir productos y platillos ofrecidos por vendedores locales, consultar su información y establecer contacto directamente con ellos.
-
-La aplicación fue desarrollada para Android utilizando **React Native y Expo**, con una arquitectura de frontend modular preparada para consumir servicios REST proporcionados por un backend independiente.
-
-El sistema contempla funcionalidades para usuarios, vendedores y administración, incluyendo autenticación, publicación y gestión de productos, búsqueda, filtrado, interacción con productos y contacto mediante WhatsApp.
-
-> **Nota:** El backend utilizado durante el desarrollo fue desplegado mediante servicios gratuitos. Actualmente esos servicios ya no se encuentran disponibles, por lo que algunas funcionalidades que dependen de la API no están operativas. La aplicación y el código del frontend corresponden a la versión desarrollada durante el proyecto académico.
+> **Proyecto académico en equipo (2025).** El backend se desplegó con servicios gratuitos que ya no están disponibles, por lo que las funciones que dependen de la API no están operativas. Este repositorio contiene el **frontend** completo. Las capturas de pantalla se tomaron ejecutando la app con datos de ejemplo.
 
 ---
 
-## Diseño y prototipo
+## Tabla de contenido
 
-El diseño de la aplicación fue realizado previamente al desarrollo de las interfaces.
-
-### Figma
-
-**Prototipo y diseño de UFood:**
-[Ver prototipo en Figma](https://www.figma.com/proto/RSHdXW03TWzHwBnlzr1H6I/Proyecto-Unifood?node-id=203-91&t=YW8KWwt7WpPUUCtV-1&scaling=scale-down&content-scaling=fixed&page-id=92%3A2089)
-
-### Landing Page
-
-**Landing page del proyecto:**
-https://matrark.github.io/ufood-landing/
-
-La landing presenta el concepto general de UFood y sirve como complemento visual del proyecto.
+- [Capturas de pantalla](#capturas-de-pantalla)
+- [Funcionalidades](#funcionalidades)
+- [Stack tecnológico](#stack-tecnológico)
+- [Arquitectura](#arquitectura)
+- [Decisiones técnicas](#decisiones-técnicas)
+- [Mi participación](#mi-participación)
+- [Monitoreo con Datadog](#monitoreo-con-datadog)
+- [Instalación local](#instalación-local)
+- [Distribución](#distribución)
+- [Estado actual](#estado-actual)
+- [Roadmap](#roadmap)
+- [Equipo](#equipo)
+- [Documentación](#documentación)
+- [Licencia](#licencia)
 
 ---
 
-## Mi participación
+## Capturas de pantalla
 
-Mi participación en UFood estuvo enfocada principalmente en el **desarrollo del frontend de la aplicación móvil**.
+### Flujo de usuario
 
-Entre las actividades realizadas se encuentran:
+<table align="center">
+  <tr>
+    <td align="center"><img src="docs/images/login.jpeg" width="200" alt="Inicio de sesión"><br><sub><b>Inicio de sesión</b></sub></td>
+    <td align="center"><img src="docs/images/register.jpeg" width="200" alt="Registro"><br><sub><b>Registro</b></sub></td>
+    <td align="center"><img src="docs/images/homeusuario.jpeg" width="200" alt="Pantalla principal"><br><sub><b>Inicio</b></sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/images/productos.jpeg" width="200" alt="Productos"><br><sub><b>Productos</b></sub></td>
+    <td align="center"><img src="docs/images/editarproducto.jpeg" width="200" alt="Editar producto"><br><sub><b>Editar producto</b></sub></td>
+    <td align="center"><img src="docs/images/perfilusuario.jpeg" width="200" alt="Perfil de usuario"><br><sub><b>Perfil</b></sub></td>
+  </tr>
+</table>
 
-* Desarrollo y modificación de interfaces con **React Native**.
-* Implementación de pantallas y componentes de la aplicación.
-* Desarrollo de la pantalla principal.
-* Implementación de interfaces para consulta y gestión de productos.
-* Desarrollo y modificación del formulario para publicar productos.
-* Implementación de validaciones de formularios.
-* Implementación de búsqueda y filtrado de productos.
-* Integración del contacto con vendedores mediante WhatsApp.
-* Implementación de interacción y votación sobre productos.
-* Manejo de sesión y almacenamiento local.
-* Integración del frontend con los servicios REST del backend.
-* Implementación de monitoreo mediante **Datadog**.
-* Configuración de la aplicación para Android.
-* Corrección y mejoras de interfaz y experiencia de usuario.
-* Preparación del proyecto para su compilación y distribución mediante Expo/EAS.
+### Panel de administración
 
-La documentación técnica describe el frontend como una aplicación React Native + Expo organizada mediante pantallas, navegación, componentes, hooks, estilos y recursos estáticos.
+<table align="center">
+  <tr>
+    <td align="center"><img src="docs/images/adminhome.jpeg" width="200" alt="Dashboard administrativo"><br><sub><b>Dashboard</b></sub></td>
+    <td align="center"><img src="docs/images/adminusuarios.jpeg" width="200" alt="Gestión de usuarios"><br><sub><b>Usuarios</b></sub></td>
+    <td align="center"><img src="docs/images/adminproductos.jpeg" width="200" alt="Gestión de productos"><br><sub><b>Productos</b></sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/images/eliminarproducto.jpeg" width="200" alt="Eliminar producto"><br><sub><b>Eliminar producto</b></sub></td>
+    <td align="center"><img src="docs/images/desactivarcuentas.jpeg" width="200" alt="Desactivar cuentas"><br><sub><b>Desactivar cuentas</b></sub></td>
+  </tr>
+</table>
 
 ---
 
 ## Funcionalidades
 
-### Usuarios
+- **Autenticación con JWT**: registro, inicio de sesión, persistencia de sesión, expiración por inactividad, bloqueo temporal tras intentos fallidos y cierre de sesión.
+- **Gestión de productos**: crear, editar, eliminar y consultar productos, incluidos los de un vendedor específico, con validación de formularios.
+- **Imágenes**: selección desde cámara o galería con Expo Image Picker.
+- **Búsqueda y filtrado**: por nombre, descripción, categoría y precio; ordenamiento por precio, nombre o fecha.
+- **Votación**: los usuarios pueden dar like o dislike a los productos.
+- **Contacto por WhatsApp**: abre una conversación directa con el vendedor del producto.
+- **Perfil**: edición de datos y eliminación de cuenta.
+- **Panel de administración**: dashboard con estadísticas, gestión y búsqueda de usuarios, activación/desactivación, y consulta y eliminación de productos. El acceso se controla por rol.
+- **Monitoreo**: eventos de uso, errores y rendimiento HTTP enviados a Datadog.
 
-* Registro e inicio de sesión.
-* Autenticación mediante JWT.
-* Persistencia de sesión.
-* Edición del perfil.
-* Eliminación de cuenta.
-* Consulta de productos.
-* Publicación de productos.
-* Edición y gestión de productos.
-* Selección de imágenes desde el dispositivo.
-* Búsqueda de productos.
-* Filtrado por categorías.
-* Ordenamiento de productos.
-* Interacción y votación de productos.
-* Contacto con vendedores mediante WhatsApp.
-* Cierre de sesión.
+---
 
-### Gestión de productos
+## Stack tecnológico
 
-* Creación de productos.
-* Edición de productos.
-* Eliminación de productos.
-* Consulta de productos.
-* Consulta de productos asociados a un vendedor.
-* Validación de información.
-* Selección de imágenes mediante cámara o galería.
-* Actualización de productos.
-* Búsqueda y filtrado.
+| Capa | Tecnología |
+|---|---|
+| Frontend | React Native, Expo, JavaScript, React Hooks |
+| Navegación y estilos | React Navigation, NativeWind |
+| Red y persistencia | Fetch con interceptores propios, AsyncStorage |
+| Dispositivo | Expo Image Picker, Expo StatusBar |
+| Backend (equipo) | .NET, microservicios, MongoDB, JWT, Docker, Render |
+| Monitoreo | Datadog |
+| Build y distribución | Expo Go, EAS Build, Google Play Console |
+| Diseño y control de versiones | Figma, Git, GitHub |
 
-### Administración
+> El backend lo desarrollaron otros integrantes del equipo y no forma parte de este repositorio.
 
-El proyecto contempla interfaces administrativas para:
+---
 
-* Dashboard administrativo.
-* Consulta de estadísticas.
-* Gestión de usuarios.
-* Búsqueda de usuarios.
-* Activación y desactivación de usuarios.
-* Consulta y gestión de productos.
-* Eliminación de productos.
-* Diferenciación entre usuarios y administradores.
+## Arquitectura
 
-### Contacto mediante WhatsApp
+El frontend sigue el patrón **MVVM** con una capa de servicios que abstrae la API y el almacenamiento local.
 
-Los usuarios pueden iniciar contacto con el vendedor de un producto directamente mediante WhatsApp.
+```mermaid
+flowchart LR
+    V[Views<br/>Pantallas RN] --> VM[ViewModels<br/>Hooks y estado]
+    VM --> S[Services<br/>Auth · Product · Http · Storage]
+    S --> M[Models<br/>User · Product]
+    S -->|REST + JWT| API[API .NET<br/>Microservicios]
+    API --> DB[(MongoDB)]
+    S --> LS[(AsyncStorage)]
+```
 
-Esta funcionalidad utiliza la información del vendedor disponible en el sistema y permite establecer la comunicación fuera de la aplicación.
+```text
+UFOOD/
+├── src/
+│   ├── config/         # Configuración centralizada (app.config.js)
+│   ├── models/         # User.model.js, Product.model.js
+│   ├── services/       # Http, Auth, Product, Storage, Datadog
+│   ├── viewmodels/     # Auth.viewmodel.js, Product.viewmodel.js, ...
+│   ├── views/          # Pantallas (Login, Home, ProductForm, Admin*, ...)
+│   ├── navigation/     # AppNavigator.js, NavigationTracker.js
+│   ├── utils/          # Validaciones y formato
+│   └── constants/      # Colores
+├── assets/
+├── docs/images/        # Capturas del README
+├── App.js
+├── app.json
+└── ARCHITECTURE.md
+```
+
+Para el detalle de cada capa y de los patrones aplicados, consulta [ARCHITECTURE.md](./ARCHITECTURE.md).
+
+---
+
+## Decisiones técnicas
+
+| Decisión | Motivo |
+|---|---|
+| **MVVM con hooks** | Separa la UI de la lógica de presentación y facilita probar cada capa por separado. |
+| **Servicios Singleton** | `Http`, `Auth`, `Product` y `Storage` mantienen una única instancia y estado compartido consistente. |
+| **Interceptores HTTP** | El token JWT se agrega automáticamente a las peticiones y la actividad de sesión se actualiza en un solo lugar. |
+| **Servicios como repositorios** | Cambiar el backend solo requiere modificar la capa de servicios, sin tocar las vistas. |
+| **Configuración centralizada** | URLs, claves de almacenamiento, reglas de validación y categorías viven en `app.config.js`. |
+| **Control de sesión en cliente** | Expiración por inactividad (1 hora) y bloqueo temporal tras 5 intentos fallidos de inicio de sesión. |
+| **Subida con FormData** | Las imágenes se envían como `multipart/form-data`, con ajustes específicos para Android. |
+
+---
+
+## Mi participación
+
+Me enfoqué en el **desarrollo del frontend móvil**:
+
+- Interfaces y componentes en React Native: pantalla principal, consulta y gestión de productos.
+- Formulario de publicación de productos y validaciones.
+- Búsqueda, filtrado y ordenamiento.
+- Contacto con vendedores por WhatsApp e interacción/votación de productos.
+- Manejo de sesión y almacenamiento local.
+- Integración con los servicios REST del backend.
+- Monitoreo con Datadog.
+- Configuración para Android y preparación del build con Expo/EAS.
+- Corrección de errores y mejoras de interfaz y experiencia de usuario.
 
 ---
 
 ## Monitoreo con Datadog
 
-Se integró **Datadog** en el frontend para registrar información relacionada con el uso y funcionamiento de la aplicación.
+Se integró un tracker que registra el uso y el funcionamiento de la app. Fue diseñado para funcionar dentro de Expo Go.
 
-Entre los eventos contemplados se encuentran:
-
-```text
-screen_view
-screen_duration
-app_started
-search_performed
-product_voted
-whatsapp_contact_initiated
-products_refreshed
-product_interaction
-http_request
-user_logged_in
-user_logged_out
-```
-
-El sistema permite recopilar información relacionada con:
-
-* Navegación entre pantallas.
-* Tiempo de permanencia.
-* Búsquedas.
-* Interacciones con productos.
-* Votos.
-* Contactos mediante WhatsApp.
-* Errores.
-* Rendimiento de peticiones HTTP.
-
-La documentación indica que el tracker fue diseñado para funcionar dentro de Expo Go y registrar eventos de navegación, rendimiento y comportamiento.
+| Categoría | Eventos |
+|---|---|
+| Navegación | `screen_view`, `screen_duration`, `app_started` |
+| Interacción | `search_performed`, `product_interaction`, `product_voted`, `products_refreshed` |
+| Contacto | `whatsapp_contact_initiated` |
+| Sesión | `user_logged_in`, `user_logged_out` |
+| Rendimiento | `http_request` |
 
 ---
 
-## Tecnologías utilizadas
+## Instalación local
 
-### Frontend
-
-* **React Native**
-* **Expo**
-* **JavaScript**
-* **React Hooks**
-* **React Navigation**
-* **NativeWind**
-* **Axios**
-* **AsyncStorage**
-* **Expo Image Picker**
-* **Expo StatusBar**
-
-La documentación técnica identifica React Native/Expo como la base de la aplicación Android y React Navigation, Axios/Fetch, AsyncStorage y Expo Image Picker como dependencias relevantes del frontend.
-
-### Backend
-
-El frontend consume una API REST desarrollada independientemente del cliente móvil.
-
-* **.NET**
-* **Microservicios**
-* **MongoDB**
-* **APIs REST**
-* **JWT**
-* **Docker**
-* **Render**
-
-La arquitectura general documentada sigue el flujo:
-
-```text
-Aplicación Android
-       │
-       ▼
-API / Microservicios .NET
-       │
-       ▼
-MongoDB
-```
-
-> El desarrollo del backend no forma parte de mi contribución principal en este repositorio.
-
-### Herramientas
-
-* **Git**
-* **GitHub**
-* **Figma**
-* **Datadog**
-* **Expo Go**
-* **EAS Build**
-* **Google Play Console**
-
----
-
-## Arquitectura del frontend
-
-El frontend utiliza una estructura modular basada en una adaptación del patrón **MVC**, separando la presentación de la lógica de interacción y manejo de datos.
-
-```text
-                    ┌─────────────────────┐
-                    │        Views        │
-                    │    React Native     │
-                    │      Screens        │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │   Control / Logic   │
-                    │   Hooks / States    │
-                    │    Validations      │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │      Services       │
-                    │   API / Storage     │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │      REST API       │
-                    │       .NET          │
-                    └─────────────────────┘
-```
-
-La documentación describe esta separación mediante vistas, modelos y lógica/control basada principalmente en hooks y manejo de estados.
-
----
-
-## Estructura principal
-
-La estructura del frontend está organizada alrededor de pantallas, servicios, modelos, hooks, navegación y lógica de presentación.
-
-```text
-UFOOD/
-│
-├── src/
-│   ├── config/
-│   ├── hooks/
-│   ├── models/
-│   ├── services/
-│   ├── utils/
-│   ├── viewmodels/
-│   ├── views/
-│   └── navigation/
-│
-├── assets/
-├── App.js
-├── app.json
-├── package.json
-└── ARCHITECTURE.md
-```
-
-Entre los módulos principales se encuentran:
-
-```text
-views/
-├── LoginScreen
-├── RegisterScreen
-├── HomeScreen
-├── ProductsListScreen
-├── ProductFormScreen
-├── ProfileScreen
-├── AdminHomeScreen
-├── AdminProductsScreen
-├── AdminProductDetailScreen
-└── AdminUsersScreen
-```
-
----
-
-## Autenticación
-
-El frontend implementa un flujo de autenticación basado en JWT proporcionado por el backend.
-
-Incluye:
-
-* Registro.
-* Inicio de sesión.
-* Persistencia de sesión.
-* Almacenamiento local del token.
-* Interceptores HTTP.
-* Control de expiración de sesión.
-* Cierre de sesión.
-* Validación de credenciales.
-* Manejo de errores.
-* Control de acceso a funcionalidades administrativas.
-
----
-
-## Gestión de imágenes
-
-La aplicación utiliza **Expo Image Picker** para seleccionar imágenes desde el dispositivo.
-
-El flujo principal es:
-
-```text
-Usuario
-   │
-   ├── Cámara
-   │
-   └── Galería
-        │
-        ▼
-  Selección de imagen
-        │
-        ▼
-Formulario de producto
-        │
-        ▼
-      API
-```
-
-Esta funcionalidad está principalmente relacionada con la publicación y administración de productos.
-
----
-
-## Búsqueda y filtrado
-
-La pantalla principal permite consultar los productos disponibles mediante diferentes interacciones.
-
-Se implementaron:
-
-* Búsqueda por texto.
-* Búsqueda por nombre.
-* Búsqueda por categoría.
-* Búsqueda por descripción.
-* Búsqueda por precio.
-* Filtrado por categoría.
-* Ordenamiento por precio.
-* Ordenamiento por nombre.
-* Ordenamiento por fecha.
-* Actualización de resultados.
-
----
-
-## UI / UX
-
-La interfaz fue desarrollada buscando mantener una experiencia sencilla y orientada a las funciones principales del marketplace.
-
-Entre las consideraciones documentadas se encuentran:
-
-* Diseño limpio.
-* Colores consistentes.
-* Botones accesibles.
-* Interfaces enfocadas en la funcionalidad.
-* Adaptación a diferentes dispositivos Android.
-* Separación de componentes y lógica.
-* Validaciones para mejorar la experiencia de usuario.
-
-La documentación señala específicamente el uso consistente de colores, botones grandes y accesibles y un diseño enfocado en funcionalidad.
-
----
-
-## Instalación
-
-### Requisitos
-
-* Node.js
-* npm
-* Expo
-* Android Studio, en caso de desarrollo/emulación Android.
-
-### Clonar el repositorio
+**Requisitos:** Node.js, npm y, para emulación, Android Studio. El proyecto usa **Expo SDK 54**, por lo que necesitas una versión de Expo Go compatible con ese SDK.
 
 ```bash
 git clone https://github.com/AaronChavezMtz/ufood-frontend.git
-
 cd ufood-frontend
-```
-
-### Instalar dependencias
-
-```bash
 npm install
+npx expo start -c
 ```
 
-### Configuración de la API
+También puedes usar `npm run android`, `npm run ios` o `npm run web`.
 
-Las rutas utilizadas para comunicarse con el backend se encuentran centralizadas dentro de la configuración del proyecto.
-
-```text
-src/config/app.config.js
-```
-
-Para utilizar actualmente todas las funcionalidades de la aplicación sería necesario contar nuevamente con una instancia activa del backend y actualizar los endpoints correspondientes.
-
-### Ejecutar con Expo
-
-```bash
-npm start
-```
-
-También pueden utilizarse los comandos configurados para las diferentes plataformas:
-
-```bash
-npm run android
-```
-
-```bash
-npm run ios
-```
-
-```bash
-npm run web
-```
+**Configuración de la API:** los endpoints están en `src/config/app.config.js`. Para usar todas las funciones necesitas una instancia activa del backend y actualizar esas URLs.
 
 ---
 
 ## Distribución
 
-El proyecto fue preparado para Android y se utilizó **Expo/EAS Build** para generar una versión distribuible de la aplicación.
-
-Durante el desarrollo se utilizó Expo Go y posteriormente EAS Build para generar el paquete Android.
-
-El proyecto llegó a ser distribuido mediante **Google Play Console** como parte del proceso académico. La documentación registra el proceso de compilación con EAS y la creación de una prueba cerrada para dispositivos físicos.
+La app se preparó para Android. Durante el desarrollo se usó Expo Go, y después **EAS Build** para generar el paquete instalable. Llegó a distribuirse mediante **Google Play Console** con una prueba cerrada en dispositivos físicos.
 
 ---
 
-## Estado actual del proyecto
+## Estado actual
 
-**Estado: Proyecto académico finalizado / Backend no disponible actualmente**
+**Proyecto académico finalizado. Backend no disponible.**
 
-La aplicación fue desarrollada y se generó una versión instalable para Android.
+| Componente | Estado |
+|---|---|
+| Código del frontend | ✅ Disponible |
+| Interfaz y navegación | ✅ Funcionan |
+| Prototipo de Figma | ✅ Disponible |
+| Landing page | ✅ Disponible |
+| Funciones que requieren la API | ⚠️ No operativas |
 
-Sin embargo, actualmente los servicios backend utilizados durante el desarrollo ya no se encuentran activos debido a que fueron desplegados utilizando infraestructura gratuita.
-
-Por esta razón:
-
-* La aplicación puede instalarse.
-* La interfaz y navegación del frontend están disponibles.
-* El código fuente del frontend está disponible en este repositorio.
-* El prototipo de Figma continúa disponible.
-* La landing page continúa disponible.
-* Las funcionalidades que requieren comunicación con la API actualmente no pueden utilizarse correctamente.
-
-Para volver a ejecutar el sistema completo sería necesario desplegar nuevamente los microservicios y la base de datos y actualizar los endpoints utilizados por la aplicación.
+Para reactivar el sistema completo habría que volver a desplegar los microservicios y la base de datos, y actualizar los endpoints.
 
 ---
 
-## Roadmap original
+## Roadmap
 
-Durante la documentación del proyecto se contemplaron futuras funcionalidades como:
+Estas funcionalidades se plantearon durante el proyecto y **no están implementadas**:
 
-* Sistema de pedidos dentro de la aplicación.
-* Chat interno entre clientes y vendedores.
-* Integración de pagos en línea.
-* Historial de compras y ventas.
-* Panel de estadísticas para vendedores.
-* Seguimiento de entregas mediante GPS.
-* Notificaciones push.
-* Integración de herramientas adicionales de monitoreo.
-* Posible integración de IA para validación de imágenes.
-
-Estas funcionalidades forman parte del roadmap planteado durante el proyecto y no deben interpretarse como funcionalidades actualmente implementadas.
-
----
-
-## Contexto académico
-
-UFood fue desarrollado como un proyecto académico colaborativo durante 2025.
-
-El proyecto permitió aplicar conocimientos relacionados con:
-
-* Desarrollo de aplicaciones móviles.
-* React Native.
-* Expo.
-* Arquitectura de software.
-* Consumo de APIs REST.
-* Autenticación.
-* Manejo de estados.
-* Persistencia local.
-* Diseño de interfaces.
-* UX/UI.
-* Integración con servicios externos.
-* Monitoreo de aplicaciones.
-* Git y GitHub.
-* Despliegue de aplicaciones móviles.
-
-La documentación técnica del proyecto comprende arquitectura, frontend, backend, despliegue, mantenimiento y monitoreo.
+- [ ] Sistema de pedidos dentro de la app
+- [ ] Chat interno entre clientes y vendedores
+- [ ] Pagos en línea
+- [ ] Historial de compras y ventas
+- [ ] Panel de estadísticas para vendedores
+- [ ] Seguimiento de entregas por GPS
+- [ ] Notificaciones push
+- [ ] Validación de imágenes con IA
 
 ---
 
 ## Equipo
 
-Proyecto desarrollado colaborativamente.
+Proyecto académico desarrollado en equipo.
 
-### Frontend
-
-**Aaron Yosef Chávez Martínez**
-
-Participación principal en:
-
-* Desarrollo del frontend móvil.
-* Interfaces y componentes.
-* Pantallas de usuario.
-* Gestión de productos.
-* Validaciones.
-* Búsqueda y filtrado.
-* Integración con WhatsApp.
-* Manejo de sesión.
-* Integración con APIs.
-* Monitoreo con Datadog.
-* Configuración y distribución de la aplicación Android.
+| Rol | Integrante |
+|---|---|
+| Frontend móvil | **Aaron Yosef Chávez Martínez** · [GitHub](https://github.com/AaronChavezMtz) |
 
 ---
 
 ## Documentación
 
-La documentación técnica completa del proyecto incluye información sobre:
-
-* Arquitectura.
-* Frontend.
-* Backend.
-* Base de datos.
-* Despliegue.
-* Mantenimiento.
-* Monitoreo con Datadog.
-* Convenciones del proyecto.
-* Flujos de usuario.
+- [ARCHITECTURE.md](./ARCHITECTURE.md): arquitectura MVVM, patrones de diseño, flujo de datos y seguridad del cliente.
+- [Política de privacidad](./PRIVACY_POLICY.md)
+- [Prototipo en Figma](https://www.figma.com/proto/RSHdXW03TWzHwBnlzr1H6I/Proyecto-Unifood?node-id=203-91&t=YW8KWwt7WpPUUCtV-1&scaling=scale-down&content-scaling=fixed&page-id=92%3A2089)
+- [Landing page](https://matrark.github.io/ufood-landing/)
 
 ---
 
 ## Licencia
 
-Proyecto desarrollado con fines académicos.
+Consulta el archivo [LICENSE](./LICENSE).
